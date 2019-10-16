@@ -22,5 +22,5 @@ const Component = ({ sliceOfState }) => (
       <p>{sliceOfState}</p>
   </div>
 );
-const ConnectedComponent = connect(mapStateToProps)(Component);
+const ConnectedComponent = connect(mapStateToProps, mapDispatchToProps)(Component);
 export default ConnectedComponent;
