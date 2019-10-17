@@ -6,7 +6,7 @@ function mapDispatchToProps(dispatch) {
     return {
         changeSomething: data => dispatch(changeSomething(data))
     };
-}
+};
 
 const Input = ( { changeSomething }) => {
     const [message, setMessage] = useState("");
@@ -18,20 +18,20 @@ const Input = ( { changeSomething }) => {
     function handleChangeMessage(e) {
         console.log(message);
         setMessage(e.target.value);
-    }
+    };
 
     function handleSubmit(e) {
         e.preventDefault();
         console.log("Trying to submit", refMessage.current);
         changeSomething(refMessage.current);
         setMessage("");
-    }
+    };
 
     useEffect(() => {
         document.getElementById('msg-form').onsubmit = function (e) {
             handleSubmit(e);
         }
-    }, [])
+    }, []);
 
     return (
         <form id="msg-form" name="add-message" action="">
@@ -42,9 +42,8 @@ const Input = ( { changeSomething }) => {
           onChange={handleChangeMessage}
         />
       </form>
-    )
+    );
 }
 
 const ConnectedInput = connect(null, mapDispatchToProps)(Input);
 export default ConnectedInput;
-
