@@ -1,26 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
-import { changeSomething } from "../redux/actions/index";
+import ConnectedInput from "./ConnectedInput";
 
-function mapDispatchToProps(dispatch) {
-  return {
-    changeSomething: data => dispatch(changeSomething(data))
-  };
-}
 
 const mapStateToProps = state => {
-  return { sliceOfState: state.sliceOfState };
+  return { messages: state.messages };
 };
 
-function handleAction(event) {
- this.props.changeSomething(data);
-}
+const Component = ({ messages }) => {
 
-const Component = ({ sliceOfState }) => (
-  <div>
+  return (
+    <div>
       <h1>This Component is Connected to the Store!</h1>
-      <p>{sliceOfState}</p>
-  </div>
-);
-const ConnectedComponent = connect(mapStateToProps, mapDispatchToProps)(Component);
+      <ul>
+        {
+          messages.map((msg, i) => <li key={`msg-${i}`}>{msg}</li>)
+        }
+      </ul>
+      <ConnectedInput />
+    </div>
+  )
+};
+const ConnectedComponent = connect(mapStateToProps)(Component);
 export default ConnectedComponent;

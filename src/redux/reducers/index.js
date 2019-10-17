@@ -1,12 +1,16 @@
 import { SOME_ACTION } from "../constants/actionTypes"
 
 const initialState = {
-  articles: []
+  messages: ["Hello Cutie!"]
 };
 
 function rootReducer(state = initialState, action) {
   if (action.type === SOME_ACTION) {
-    return "New State";
+    return Object.assign({}, state,
+       {
+        messages:
+      [...state.messages, action.payload]
+       });
   }
   return state;
 }
